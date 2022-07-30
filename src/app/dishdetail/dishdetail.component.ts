@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Params , ActivatedRoute} from '@angular/router';
 import { Dish } from '../shared/dish';
 import { Location } from '@angular/common';
