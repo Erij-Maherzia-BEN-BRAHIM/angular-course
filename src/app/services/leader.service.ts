@@ -7,13 +7,13 @@ import { Leader } from '../shared/leader';
 export class LeaderService {
 
   constructor() { }
-  getLeaders():Leader[]{
-    return LEADERS
+  getLeaders():Promise <Leader[]>{
+    return Promise.resolve(LEADERS)
   }
-  getLeader(id:string):Leader{
-    return LEADERS.filter((l)=>(l.id===id))[0]
+  getLeader(id:string):Promise <Leader>{
+    return Promise.resolve(LEADERS.filter((l)=>(l.id===id))[0])
   }
-  getFeaturedLeader():Leader{
-    return LEADERS.filter((l)=> l.featured)[0]
+  getFeaturedLeader():Promise<Leader>{
+    return Promise.resolve(LEADERS.filter((l)=> l.featured)[0])
   }
 }
