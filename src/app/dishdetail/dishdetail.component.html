@@ -1,42 +1,39 @@
-<div class="container"
-    fxLayout="row"
-    fxLayout.sm="column"
-    fxLayout.xs="column"
-    fxLayoutAlign.gt-md="space-around center"
-    fxLayoutGap="10px" 
-    fxLayoutGap.xs="0">
-
+<div
+  class="container"
+  fxLayout="row"
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0"
+>
   <div fxFlex="100">
-    
-        <mat-card *ngIf="dish">
-            <mat-card-header>
+    <mat-card *ngIf="dish">
+      <mat-card-header>
         <mat-card-title>
-            <h3 *ngIf="dish">{{dish.name | uppercase}}</h3>
+          <h3 *ngIf="dish">{{ dish.name | uppercase }}</h3>
         </mat-card-title>
-            </mat-card-header>
-            <img src={{dish.image}} alt={{dish.name}}>
-            <mat-card-content>
-        <p>{{dish.description}} </p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button mat-button (click)="goBack()">BACK</button>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
-            </mat-card-actions>
-        </mat-card>
-        
+      </mat-card-header>
+      <img src="{{ dish.image }}" alt="{{ dish.name }}" />
+      <mat-card-content>
+        <p>{{ dish.description }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="goBack()">BACK</button>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 
-  <div fxFlex="40"*ngIf="dish" >
+  <div fxFlex="40" *ngIf="dish">
     <h3>Comments</h3>
-    <mat-list  *ngIf="dish">
-<mat-list-item *ngFor="let c of dish.comments">
-    {{c.comment}} <br>
-    {{c.rating}} Stars <br>
-    -- {{c.author}} {{c.date | date}}
-
-</mat-list-item>
+    <mat-list *ngIf="dish">
+      <mat-list-item *ngFor="let c of dish.comments">
+        <p matLine>{{ c.comment }}</p>
+        <p matLine>{{ c.rating }} Stars</p>
+        <p matLine>-- {{ c.author }} {{ c.date | date }}</p>
+      </mat-list-item>
     </mat-list>
   </div>
-
 </div>
