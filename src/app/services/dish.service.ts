@@ -39,15 +39,6 @@ export class DishService {
    // return of(DISHES.map(dish => dish.id ));
   }
   
-  addComment(id,comments){
-    DISHES.map( dish =>{
-      if (dish.id==id )
-      {dish.comments=comments;
-       }
-     
-    })
-   
-  }
   putDish(dish: Dish): Observable<Dish> {
     const httpOptions = {
       headers: new HttpHeaders({
