@@ -7,14 +7,14 @@
   fxLayoutGap="10px"
   fxLayoutGap.xs="0"
 >
-  <div fxFlex="100">
+  <div fxFlex="60">
     <mat-card *ngIf="dish">
       <mat-card-header>
         <mat-card-title>
           <h3 *ngIf="dish">{{ dish.name | uppercase }}</h3>
         </mat-card-title>
       </mat-card-header>
-      <img src="{{ dish.image }}" alt="{{ dish.name }}" />
+      <img src="{{ dish.image }}" alt="{{ dish.name }}" style="width: 60%;"/>
       <mat-card-content>
         <p>{{ dish.description }}</p>
       </mat-card-content>
@@ -28,9 +28,8 @@
         <button mat-button [routerLink]="['/dishdetail', next]"><span class="fa fa-chevron-right fa-lg"></span></button>
       </mat-card-actions>
     </mat-card>
-  </div>
-
-  <div fxFlex="40" *ngIf="dish">
+    </div>
+  <div fxFlex="40">
     <h3>Comments</h3>
     <mat-list *ngIf="dish">
       <mat-list-item *ngFor="let c of dish.comments">
@@ -38,6 +37,45 @@
         <p matLine>{{ c.rating }} Stars</p>
         <p matLine>-- {{ c.author }} {{ c.date | date }}</p>
       </mat-list-item>
+      
     </mat-list>
+    <div class="form-size" >
+      <form novalidate [formGroup]="commentForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+        <mat-form-field class="full-width">
+        <input matInput type="text" formControlName="author" placeholder="Name">
+        <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
+        </mat-form-field> 
+      </p>
+      <p>
+
+        <mat-slider
+        thumbLabel
+        type="range"
+        [displayWith]="formatLabel"
+        tickInterval="5"
+        step="1"
+        min="1"
+        max="5"
+        formControlName="rating" required
+        >
+
+      </mat-slider>
+      </p>
+<p>
+
+  
+  <mat-form-field class="full-width">
+    <textarea matInput type="text" formControlName="comment" placeholder="Your Comment" rows=12></textarea>
+    <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+  </mat-form-field> 
+</p>
+
+<button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid" >Submit</button>
+
+        
+          </form>
+        </div>
   </div>
+
 </div>

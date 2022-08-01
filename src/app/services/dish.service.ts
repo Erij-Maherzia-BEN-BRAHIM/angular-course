@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { Dish } from '../shared/dish';
+import { DISHES } from '../shared/dishes';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +23,14 @@ export class DishService {
   }
   getDishIds(): Observable<string[] | any> {
     return of(DISHES.map(dish => dish.id ));
+  }
+  addComment(id,comments){
+    DISHES.map( dish =>{
+      if (dish.id==id )
+      {dish.comments=comments;
+       }
+     
+    })
+   
   }
 }
