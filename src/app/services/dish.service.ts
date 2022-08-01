@@ -4,7 +4,7 @@ import { delay } from 'rxjs/operators';
 import { Dish } from '../shared/dish';
 import { DISHES } from '../shared/dishes';
 import { map, catchError } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { baseURL } from '../shared/baseurl';
 import { ProcessHTTPMsgServiceService } from './process-httpmsg-service.service';
 @Injectable({
@@ -38,6 +38,7 @@ export class DishService {
  
    // return of(DISHES.map(dish => dish.id ));
   }
+  
   addComment(id,comments){
     DISHES.map( dish =>{
       if (dish.id==id )
@@ -46,5 +47,15 @@ export class DishService {
      
     })
    
+  }
+  putDish(dish: Dish): Observable<Dish> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.put<Dish>(baseURL + 'dishes/' + dish.id, dish, httpOptions)
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+
   }
 }
