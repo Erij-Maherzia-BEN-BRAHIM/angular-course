@@ -21,6 +21,7 @@ export class DishdetailComponent implements OnInit {
   commentForm: FormGroup;
   comment: Comment;
   element;
+  errMess: string;
   formErrors = {
     comment: '',
     author: '',
@@ -55,7 +56,7 @@ export class DishdetailComponent implements OnInit {
       .subscribe((dish) => {
         this.dish = dish;
         this.setPrevNext(dish.id);
-      });
+      }, errmess => this.errMess = <any>errmess );
   }
   createForm() {
     this.commentForm = this.fb.group({

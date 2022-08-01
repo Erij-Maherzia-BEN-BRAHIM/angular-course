@@ -34,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { ProcessHTTPMsgServiceService } from './services/process-httpmsg-service.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 @NgModule({
@@ -74,7 +75,7 @@ import { LoginComponent } from './login/login.component';
   entryComponents:[
     LoginComponent
   ],
-  providers: [DishService, PromotionService, LeaderService, {provide: 'BaseURL', useValue: baseURL}],
+  providers: [DishService, PromotionService, LeaderService, {provide: 'BaseURL', useValue: baseURL},ProcessHTTPMsgServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
